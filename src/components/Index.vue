@@ -1,7 +1,7 @@
 <template>
   <div id="index">
     <DataManager :inputTexts="texts" ref="manager"></DataManager>
-    <Canvas :inputTexts="texts"></Canvas><br>
+    <Canvas :inputTexts="texts" ref="canvas"></Canvas><br>
     <textarea v-model="texts" placeholder="input here"/><br>
     <button type="submit" @click="prevSlide">前のスライドへ</button>
     <button type="submit" @click="nextSlide">次のスライドへ</button>
@@ -29,6 +29,10 @@ export default {
   },
   methods: {
     nextSlide () {
+      this.slideNum += 1
+      this.$refs.manager.setSlideTexts(this.slideNum)
+      this.texts = this.$refs.manager.getSlideTexts(this.slideNum)
+      this.$refs.canvas.clearContext()
     },
     prevSlide () {
     }

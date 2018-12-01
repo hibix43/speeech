@@ -15,17 +15,28 @@ export default {
   methods: {
     // getter
     getSlideTexts (num) {
-      return this.Slides[num]
+      if (num > this.Slides.length) {
+        return ''
+      } else {
+        return this.Slides[num]
+      }
     },
     // setter
-    setSlideTexts (mum) {
+    setSlideTexts (num) {
+      if (num > this.Slides.length) {
+        this.addNewSlide()
+      } else {
+        this.changeSlideTexts(num)
+      }
     },
     // 変更
     changeSlideTexts (num) {
+      this.Slides[num] = this.inputTexts
     },
     // 追加
     addNewSlide () {
-    },
+      this.Slides.push(this.inputTexts)
+    }
   }
 }
 </script>

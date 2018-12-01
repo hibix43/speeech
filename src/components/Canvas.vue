@@ -56,6 +56,9 @@ export default {
           context.fillText(line, canvasWidth / 2.0, offset + addY)
         }
       }
+    },
+    clearContext () {
+      this.draw('')
     }
   },
   mounted () {
