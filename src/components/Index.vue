@@ -7,7 +7,7 @@
     <button type="submit" @click="nextSlide">次のスライドへ</button>
     <!--<input type="range" min="0" v-bind:max="slideLength" step="1" v-model="number">-->
     <p>texts: {{ texts }}</p>
-    <p>slideNum: {{ slideNum }}</p>
+    <p>index: {{ index }}</p>
   </div>
 </template>
 
@@ -22,19 +22,19 @@ export default {
   data () {
     return {
       texts: '',
-      slideNum: 0
+      index: 0
     }
   },
   methods: {
     nextSlide () {
-      this.$refs.manager.setSlideTexts(this.slideNum)
-      this.slideNum += 1
-      this.texts = this.$refs.manager.getSlideTexts(this.slideNum)
+      this.$refs.manager.setSlideTexts(this.index)
+      this.index += 1
+      this.texts = this.$refs.manager.getSlideTexts(this.index)
     },
     prevSlide () {
-      this.$refs.manager.setSlideTexts(this.slideNum)
-      this.slideNum -= 1
-      this.texts = this.$refs.manager.getSlideTexts(this.slideNum)
+      this.$refs.manager.setSlideTexts(this.index)
+      this.index -= 1
+      this.texts = this.$refs.manager.getSlideTexts(this.index)
     }
   }
 }

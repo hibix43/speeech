@@ -14,25 +14,25 @@ export default {
   },
   methods: {
     // getter
-    getSlideTexts (num) {
-      if (num > this.Slides.length - 1) {
+    getSlideTexts (slideIndex) {
+      if (slideIndex > this.Slides.length - 1) {
         return ''
       } else {
-        return this.Slides[num]
+        return this.Slides[slideIndex]
       }
     },
     // setter
-    setSlideTexts (num) {
-      if (num > this.Slides.length - 1) {
+    setSlideTexts (slideIndex) {
+      if (slideIndex > this.Slides.length - 1) {
         this.addNewSlide()
-      } else if (num < this.Slides.length) {
-        this.changeSlideTexts(num)
+      } else if (slideIndex < this.Slides.length) {
+        this.changeSlideTexts(slideIndex)
       }
       console.log(this.Slides)
     },
     // 変更
-    changeSlideTexts (num) {
-      this.Slides[num] = this.inputTexts
+    changeSlideTexts (slideIndex) {
+      this.Slides[slideIndex] = this.inputTexts
     },
     // 追加
     addNewSlide () {
