@@ -1,5 +1,8 @@
 <template>
-  <canvas width="400" height="300" class="canvas"></canvas>
+  <div>
+    <canvas width="400" height="300" class="canvas"></canvas>
+    <button type="submit" @click="startAnimation">再生</button>
+  </div>
 </template>
 
 <script>
@@ -59,6 +62,9 @@ export default {
     },
     clearContext () {
       this.draw('')
+    },
+    startAnimation () {
+
     }
   },
   mounted () {
