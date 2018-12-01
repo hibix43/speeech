@@ -15,7 +15,7 @@ export default {
   methods: {
     // getter
     getSlideTexts (num) {
-      if (num > this.Slides.length) {
+      if (num > this.Slides.length - 1) {
         return ''
       } else {
         return this.Slides[num]
@@ -23,11 +23,12 @@ export default {
     },
     // setter
     setSlideTexts (num) {
-      if (num > this.Slides.length) {
+      if (num > this.Slides.length - 1) {
         this.addNewSlide()
-      } else {
+      } else if (num < this.Slides.length) {
         this.changeSlideTexts(num)
       }
+      console.log(this.Slides)
     },
     // 変更
     changeSlideTexts (num) {

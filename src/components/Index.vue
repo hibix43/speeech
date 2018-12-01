@@ -8,7 +8,6 @@
     <!--<input type="range" min="0" v-bind:max="slideLength" step="1" v-model="number">-->
     <p>texts: {{ texts }}</p>
     <p>slideNum: {{ slideNum }}</p>
-    <p>slideLength: {{ slideLength }}</p>
   </div>
 </template>
 
@@ -23,18 +22,19 @@ export default {
   data () {
     return {
       texts: '',
-      slideNum: 0,
-      slideLength: 0
+      slideNum: 0
     }
   },
   methods: {
     nextSlide () {
-      this.slideNum += 1
       this.$refs.manager.setSlideTexts(this.slideNum)
+      this.slideNum += 1
       this.texts = this.$refs.manager.getSlideTexts(this.slideNum)
-      this.$refs.canvas.clearContext()
     },
     prevSlide () {
+      this.$refs.manager.setSlideTexts(this.slideNum)
+      this.slideNum -= 1
+      this.texts = this.$refs.manager.getSlideTexts(this.slideNum)
     }
   }
 }
