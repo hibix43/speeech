@@ -36,13 +36,24 @@ export default {
       // 書きだす
       context.beginPath()
 
+      // 上下中央に描画
+      let textsTotalHeight = fontSize * lineHeight * (lines.length - 1) - fontSize / 2.0
+      // 行間の高さの分を調整
+      if (lines.length > 1) {
+        textsTotalHeight -= fontSize * (lineHeight - 1.0)
+      }
+      // 描画開始高さを決定
+      const offset = canvasHeight / 2.0 - textsTotalHeight / 2.0
+      // console.log(offset)
+      // console.log(canvasHeight - (textsTotalHeight + offset))
+
       // 改行を反映
       for (let i = 0; i <= lines.length; i++) {
         let line = lines[i]
         let addY = fontSize * lineHeight * i
         if (line !== undefined) {
           // 描画
-          context.fillText(line, canvasWidth / 2, canvasHeight / 2 + addY)
+          context.fillText(line, canvasWidth / 2.0, offset + addY)
         }
       }
     }
