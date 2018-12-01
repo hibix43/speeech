@@ -1,6 +1,7 @@
 <template>
   <div>
-    <canvas width="400" height="300" class="canvas"></canvas>
+    <canvas width="400" height="300" class="canvas" ref="canvas"></canvas>
+    <br>
     <button type="submit" @click="startAnimation">再生</button>
   </div>
 </template>
@@ -68,7 +69,7 @@ export default {
     }
   },
   mounted () {
-    this.ctx = this.$el.getContext('2d')
+    this.ctx = this.$refs.canvas.getContext('2d')
     this.draw(this.inputTexts)
   }
 }
