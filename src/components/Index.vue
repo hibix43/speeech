@@ -1,5 +1,6 @@
 <template>
   <div id="index">
+    <Canvas></Canvas><br>
   </div>
 </template>
 
