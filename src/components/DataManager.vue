@@ -15,6 +15,9 @@ export default {
     }
   },
   methods: {
+    getSlides () {
+      return this.Slides
+    },
     // getter
     getSlideTexts (slideIndex) {
       if (slideIndex > this.Slides.length - 1) {

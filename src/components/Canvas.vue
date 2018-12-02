@@ -2,7 +2,6 @@
   <div>
     <canvas width="400" height="300" class="canvas" ref="canvas"></canvas>
     <br>
-    <button type="submit" @click="startAnimation">再生</button>
   </div>
 </template>
 
@@ -11,9 +10,36 @@ export default {
   props: {
     inputTexts: ''
   },
+  data () {
+    return {
+      animationFlag: false,
+      index: 0,
+      slides: null
+    }
+  },
   watch: {
     inputTexts () {
       this.draw(this.inputTexts)
+    },
+    index () {
+      // スライドを描画しきったら、アニメを止める
+      if (this.index > this.slides.length - 1) {
+        this.animationFlag = false
+      }
+    },
+    animationFlag () {
+      const self = this
+      // アニメーション実行時
+      if (this.animationFlag && !this.animation) {
+        // 1秒1スライドを描画
+        self.animation = setInterval(function () {
+          self.draw(self.slides[self.index])
+          self.index += 1
+        }, 1000)
+      } else {
+        // 停止
+        clearInterval(this.animation)
+      }
     }
   },
   methods: {
@@ -23,6 +49,7 @@ export default {
       const canvasHeight = 300
       const fontSize = 36
       const lineHeight = 1.2
+
       // テキストを改行で分割
       let lines = texts.split('\n')
 
@@ -64,8 +91,12 @@ export default {
     clearContext () {
       this.draw('')
     },
-    startAnimation () {
-
+    startAnimation (slides) {
+      // 初期化
+      this.index = 0
+      this.slides = slides
+      // アニメーション始動
+      this.animationFlag = true
     }
   },
   mounted () {
