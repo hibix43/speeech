@@ -34,7 +34,9 @@ export default {
     },
     prevSlide () {
       this.$refs.manager.setSlideTexts(this.index)
-      this.index -= 1
+      if (this.index > 0) {
+        this.index -= 1
+      }
       this.texts = this.$refs.manager.getSlideTexts(this.index)
     },
     startAnimation () {
