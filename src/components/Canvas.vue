@@ -30,7 +30,7 @@ export default {
     animationFlag () {
       const self = this
       // アニメーション実行時
-      if (this.animationFlag && !this.animation) {
+      if (this.animationFlag) {
         // 1秒1スライドを描画
         self.animation = setInterval(function () {
           self.draw(self.slides[self.index])
