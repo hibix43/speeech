@@ -8,7 +8,9 @@
     <!--<input type="range" min="0" v-bind:max="slideLength" step="1" v-model="number">-->
     <p>texts: {{ texts }}</p>
     <p>index: {{ index }}</p>
-    <button type="submit" @click="startAnimation">再生</button>
+    <button type="submit" @click="startAnimation(0)">最初のスライドから再生</button>
+    <button type="submit" @click="startAnimation(index)">現在のスライドから再生</button>
+    <button type="submit" @click="stopAnimation">停止</button>
   </div>
 </template>
 
@@ -39,8 +41,11 @@ export default {
       }
       this.texts = this.$refs.manager.getSlideTexts(this.index)
     },
-    startAnimation () {
-      this.$refs.canvas.startAnimation(this.$refs.manager.getSlides())
+    startAnimation (startIndex) {
+      this.$refs.canvas.startAnimation(this.$refs.manager.getSlides(), startIndex)
+    },
+    stopAnimation () {
+      this.$refs.canvas.stopAnimation()
     }
   }
 }

@@ -91,12 +91,15 @@ export default {
     clearContext () {
       this.draw('')
     },
-    startAnimation (slides) {
+    startAnimation (slides, startIndex) {
       // 初期化
-      this.index = 0
+      this.index = startIndex
       this.slides = slides
       // アニメーション始動
       this.animationFlag = true
+    },
+    stopAnimation () {
+      this.animationFlag = false
     }
   },
   mounted () {
