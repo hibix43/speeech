@@ -1,5 +1,7 @@
 <template>
-  <p>{{ Slides }}</p>
+  <div>
+    <p>{{ Slides }}</p>
+  </div>
 </template>
 
 <script>
@@ -13,6 +15,9 @@ export default {
     }
   },
   methods: {
+    getSlides () {
+      return this.Slides
+    },
     // getter
     getSlideTexts (slideIndex) {
       if (slideIndex > this.Slides.length - 1) {

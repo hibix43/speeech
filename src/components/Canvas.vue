@@ -1,5 +1,8 @@
 <template>
-  <canvas width="400" height="300" class="canvas"></canvas>
+  <div>
+    <canvas width="400" height="300" class="canvas" ref="canvas"></canvas>
+    <br>
+  </div>
 </template>
 
 <script>
@@ -7,9 +10,43 @@ export default {
   props: {
     inputTexts: ''
   },
+  data () {
+    return {
+      animationFlag: false,
+      index: 0,
+      slides: null
+    }
+  },
   watch: {
     inputTexts () {
       this.draw(this.inputTexts)
+    },
+    index () {
+      // 描画中のindexを親にも反映
+      this.$parent.index = this.index
+      // スライドを描画しきったら、アニメを止める
+      if (this.index > this.slides.length - 1) {
+        this.animationFlag = false
+      }
+    },
+    animationFlag () {
+      const self = this
+      // アニメーション実行時
+      if (this.animationFlag) {
+        // 1秒1スライドを描画
+        self.animation = setInterval(function () {
+          // 描画するテキストを取得
+          const showTexts = self.slides[self.index]
+          // Index.vue内のtextareaにも反映
+          self.$parent.texts = showTexts
+          // Canvasに描画
+          self.draw(showTexts)
+          self.index += 1
+        }, 1000)
+      } else {
+        // 停止
+        clearInterval(this.animation)
+      }
     }
   },
   methods: {
@@ -19,6 +56,7 @@ export default {
       const canvasHeight = 300
       const fontSize = 36
       const lineHeight = 1.2
+
       // テキストを改行で分割
       let lines = texts.split('\n')
 
@@ -59,10 +97,20 @@ export default {
     },
     clearContext () {
       this.draw('')
+    },
+    startAnimation (slides, startIndex) {
+      // 初期化
+      this.index = startIndex
+      this.slides = slides
+      // アニメーション始動
+      this.animationFlag = true
+    },
+    stopAnimation () {
+      this.animationFlag = false
     }
   },
   mounted () {
-    this.ctx = this.$el.getContext('2d')
+    this.ctx = this.$refs.canvas.getContext('2d')
     this.draw(this.inputTexts)
   }
 }
