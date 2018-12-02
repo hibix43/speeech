@@ -22,6 +22,8 @@ export default {
       this.draw(this.inputTexts)
     },
     index () {
+      // 描画中のindexを親にも反映
+      this.$parent.index = this.index
       // スライドを描画しきったら、アニメを止める
       if (this.index > this.slides.length - 1) {
         this.animationFlag = false
@@ -33,7 +35,12 @@ export default {
       if (this.animationFlag) {
         // 1秒1スライドを描画
         self.animation = setInterval(function () {
-          self.draw(self.slides[self.index])
+          // 描画するテキストを取得
+          const showTexts = self.slides[self.index]
+          // Index.vue内のtextareaにも反映
+          self.$parent.texts = showTexts
+          // Canvasに描画
+          self.draw(showTexts)
           self.index += 1
         }, 1000)
       } else {
