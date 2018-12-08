@@ -1,6 +1,17 @@
 html, body {
   height: 100%;
 }
+body {
+  background-color: #eee;
+}
+header {
+  text-align: center;
+  text-align: -webkit-center;
+  font-size: 3em;
+  font-weight: bold;
+  background-color: #333;
+  color: #fff;
+}
 #index {
   width: 100%;
   max-width: 960px;
@@ -10,4 +21,6 @@ html, body {
   text-align: -webkit-center;
   border-right: 1px solid #ccc;
   border-left: 1px solid #ccc;
+  background: #fff;
+  box-shadow: 0 0 4px #999;
 }
