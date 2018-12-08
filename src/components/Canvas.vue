@@ -63,13 +63,13 @@ export default {
       // 初期化
       context.clearRect(0, 0, canvasWidth, canvasHeight)
       // 背景色を黒にして塗りつぶす
-      context.fillStyle = '#000'
+      context.fillStyle = '#fff'
       context.fillRect(0, 0, canvasWidth, canvasHeight)
 
       // フォント設定
       context.textAlign = 'center'
       context.font = 'bold ' + fontSize + 'px Arial, meiryo, sans-serif'
-      context.fillStyle = '#fff'
+      context.fillStyle = '#666'
 
       // 書きだす
       context.beginPath()
@@ -116,8 +116,10 @@ export default {
 }
 </script>
 
-<style>
- .canvas {
-     border: 1px solid #333;
- }
+<style scoped>
+.canvas {
+  width: 90%;
+  max-width: 400px;
+  border: 2px solid #666;
+}
 </style>
