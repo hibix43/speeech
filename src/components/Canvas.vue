@@ -121,6 +121,6 @@ export default {
   width: 90%;
   max-width: 400px;
   margin-top: 24px;
-  border: 2px solid #666;
+  border: 4px solid #777;
 }
 </style>
