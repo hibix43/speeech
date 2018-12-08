@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>{{ Slides }}</p>
   </div>
 </template>
 

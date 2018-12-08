@@ -1,6 +1,5 @@
 <template>
   <div id="index">
-    <DataManager :inputTexts="texts" ref="manager"></DataManager>
     <Canvas :inputTexts="texts" ref="canvas"></Canvas>
     <textarea v-model="texts" placeholder="input here"/>
     <div class="row">
@@ -13,6 +12,7 @@
       <button class="btn four columns" type="submit" @click="stopAnimation">停止</button>
     </div>
     <button class="btn complete-btn" type="submit">完成させてツイートする</button>
+    <DataManager :inputTexts="texts" ref="manager"></DataManager>
   </div>
 </template>
 
