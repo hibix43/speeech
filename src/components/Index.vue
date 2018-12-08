@@ -1,20 +1,18 @@
 <template>
   <div id="index">
     <DataManager :inputTexts="texts" ref="manager"></DataManager>
-    <Canvas :inputTexts="texts" ref="canvas"></Canvas><br>
-    <textarea v-model="texts" placeholder="input here"/><br>
-    <button type="submit" @click="prevSlide">前のスライドへ</button>
-    <button type="submit" @click="nextSlide">次のスライドへ</button>
-    <p>texts: {{ texts }}</p>
-    <div>
-      <p>Min: 0</p>
-      <input type="range" min=0 v-bind:max="indexMax" step=1 v-model="index">
-      <p>Max: {{ indexMax }}</p>
-      <p>index: {{ index }}</p>
+    <Canvas :inputTexts="texts" ref="canvas"></Canvas>
+    <textarea v-model="texts" placeholder="input here"/>
+    <div class="row">
+      <button class="six columns" type="submit" @click="prevSlide">前のスライドへ</button>
+      <button class="six columns" type="submit" @click="nextSlide">次のスライドへ</button>
     </div>
-    <button type="submit" @click="startAnimation(0)">最初のスライドから再生</button>
-    <button type="submit" @click="startAnimation(index)">現在のスライドから再生</button>
-    <button type="submit" @click="stopAnimation">停止</button>
+    <div class="row">
+      <button class="four columns" type="submit" @click="startAnimation(0)">最初のスライドから再生</button>
+      <button class="four columns" type="submit" @click="startAnimation(index)">現在のスライドから再生</button>
+      <button class="four columns" type="submit" @click="stopAnimation">停止</button>
+    </div>
+    <button type="submit">完成!!</button>
   </div>
 </template>
 
@@ -62,3 +60,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+textarea {
+  min-width: 320px;
+  min-height: 180px;
+  margin: 16px 0;
+}
+.row {
+  margin: 0 64px;
+}
+</style>

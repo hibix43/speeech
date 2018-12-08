@@ -4,6 +4,9 @@ html, body {
 body {
   background-color: #eee;
 }
+button {
+  font-size: 1em;
+}
 header {
   text-align: center;
   text-align: -webkit-center;
