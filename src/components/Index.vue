@@ -1,7 +1,7 @@
 <template>
   <div id="index">
     <Canvas :inputTexts="texts" ref="canvas"></Canvas>
-    <textarea v-model="texts" placeholder="input here"/>
+    <textarea v-model="texts" placeholder="ここに入力してスライドを作成しよう"/>
     <div class="row">
       <button class="btn six columns" type="submit" @click="prevSlide">前のスライドへ</button>
       <button class="btn six columns" type="submit" @click="nextSlide">次のスライドへ</button>
@@ -64,8 +64,11 @@ export default {
 <style scoped>
 textarea {
   min-width: 320px;
+  width: 90%;
+  max-width: 600px;
   min-height: 180px;
   margin: 16px 0;
+  border: 4px solid #ddd;
 }
 .row {
   margin: 16px 64px;
