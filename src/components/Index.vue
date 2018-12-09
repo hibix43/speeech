@@ -12,9 +12,7 @@
       <button class="btn four columns" type="submit" @click="stopAnimation">停止</button>
     </div>
     <button class="btn complete-btn" type="submit" @click="createGif">完成させてツイートする</button>
-    <div>
-      <img v-bind:src="gifURL"/>
-     </div>
+    <img class="gif-img" v-bind:src="gifURL" width="400"/>
     <DataManager :inputTexts="texts" ref="manager"></DataManager>
   </div>
 </template>
@@ -104,5 +102,9 @@ textarea {
   color: #fff;
   border: 1px solid #fff;
   box-shadow: 0 0 4px #00bbee;
+}
+.gif-img {
+  display: block;
+  margin-top: 40px;
 }
 </style>
