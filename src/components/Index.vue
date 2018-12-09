@@ -11,7 +11,8 @@
       <button class="btn four columns" type="submit" @click="startAnimation(index)">現在のスライドから再生</button>
       <button class="btn four columns" type="submit" @click="stopAnimation">停止</button>
     </div>
-    <button class="btn complete-btn" type="submit">完成させてツイートする</button>
+    <button class="btn complete-btn" type="submit" @click="createGif">完成させてツイートする</button>
+    <img class="gif-img" v-bind:src="gifURL" width="400"/>
     <DataManager :inputTexts="texts" ref="manager"></DataManager>
   </div>
 </template>
@@ -28,7 +29,8 @@ export default {
     return {
       texts: '',
       index: 0,
-      indexMax: 0
+      indexMax: 0,
+      gifURL: ''
     }
   },
   watch: {
@@ -37,25 +39,36 @@ export default {
     }
   },
   methods: {
+    setSlideTexts () {
+      if (this.texts !== '') {
+        this.$refs.manager.setSlideTexts(this.index)
+      }
+    },
     nextSlide () {
-      this.$refs.manager.setSlideTexts(this.index)
+      this.setSlideTexts()
       this.index += 1
       this.texts = this.$refs.manager.getSlideTexts(this.index)
       // 新たに追加したら、indexMaxを更新
       this.indexMax = this.$refs.manager.getSlides().length
     },
     prevSlide () {
-      this.$refs.manager.setSlideTexts(this.index)
+      this.setSlideTexts()
       if (this.index > 0) {
         this.index -= 1
       }
       this.texts = this.$refs.manager.getSlideTexts(this.index)
     },
     startAnimation (startIndex) {
+      this.setSlideTexts()
       this.$refs.canvas.startAnimation(this.$refs.manager.getSlides(), startIndex)
     },
     stopAnimation () {
       this.$refs.canvas.stopAnimation()
+    },
+    createGif () {
+      const base64URL = 'data:image/gif;base64,'
+      this.setSlideTexts()
+      this.gifURL = base64URL + this.$refs.canvas.createGif(this.$refs.manager.getSlides())
     }
   }
 }
@@ -89,5 +102,9 @@ textarea {
   color: #fff;
   border: 1px solid #fff;
   box-shadow: 0 0 4px #00bbee;
+}
+.gif-img {
+  display: block;
+  margin-top: 40px;
 }
 </style>
