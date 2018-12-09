@@ -1,7 +1,6 @@
 <template>
   <div>
     <canvas width="400" height="300" class="canvas" ref="canvas"></canvas>
-    <br>
   </div>
 </template>
 
@@ -61,6 +60,8 @@ export default {
       let lines = texts.split('\n')
 
       // 初期化
+      context.width = canvasWidth
+      context.height = canvasHeight
       context.clearRect(0, 0, canvasWidth, canvasHeight)
       // 背景色を黒にして塗りつぶす
       context.fillStyle = '#fff'
@@ -107,6 +108,29 @@ export default {
     },
     stopAnimation () {
       this.animationFlag = false
+    },
+    createGif (slides) {
+      console.log('Gif!!')
+      // 初期化
+      const GIFEncoder = require('gifencoder')
+      let gifAnimation = new GIFEncoder(400, 300)
+      gifAnimation.setDelay(500)
+      gifAnimation.setRepeat(0)
+      gifAnimation.start()
+      // 1コマずつ追加
+      for (let slide of slides) {
+        this.draw(slide)
+        gifAnimation.addFrame(this.ctx)
+      }
+      gifAnimation.finish()
+      // base64に変換
+      return this.convertBase64(gifAnimation)
+    },
+    convertBase64 (gifAnimation) {
+      const binaryGif = gifAnimation.out.getData()
+      const base64 = btoa(String.fromCharCode.apply(null, binaryGif))
+      console.log(base64)
+      return base64
     }
   },
   mounted () {

@@ -11,7 +11,10 @@
       <button class="btn four columns" type="submit" @click="startAnimation(index)">現在のスライドから再生</button>
       <button class="btn four columns" type="submit" @click="stopAnimation">停止</button>
     </div>
-    <button class="btn complete-btn" type="submit">完成させてツイートする</button>
+    <button class="btn complete-btn" type="submit" @click="createGif">完成させてツイートする</button>
+    <div>
+      <img v-bind:src="gifURL"/>
+     </div>
     <DataManager :inputTexts="texts" ref="manager"></DataManager>
   </div>
 </template>
@@ -28,7 +31,8 @@ export default {
     return {
       texts: '',
       index: 0,
-      indexMax: 0
+      indexMax: 0,
+      gifURL: ''
     }
   },
   watch: {
@@ -56,6 +60,10 @@ export default {
     },
     stopAnimation () {
       this.$refs.canvas.stopAnimation()
+    },
+    createGif () {
+      const base64URL = 'data:image/gif;base64,'
+      this.gifURL = base64URL + this.$refs.canvas.createGif(this.$refs.manager.getSlides())
     }
   }
 }
