@@ -41,21 +41,27 @@ export default {
     }
   },
   methods: {
+    setSlideTexts () {
+      if (this.texts !== '') {
+        this.$refs.manager.setSlideTexts(this.index)
+      }
+    },
     nextSlide () {
-      this.$refs.manager.setSlideTexts(this.index)
+      this.setSlideTexts()
       this.index += 1
       this.texts = this.$refs.manager.getSlideTexts(this.index)
       // 新たに追加したら、indexMaxを更新
       this.indexMax = this.$refs.manager.getSlides().length
     },
     prevSlide () {
-      this.$refs.manager.setSlideTexts(this.index)
+      this.setSlideTexts()
       if (this.index > 0) {
         this.index -= 1
       }
       this.texts = this.$refs.manager.getSlideTexts(this.index)
     },
     startAnimation (startIndex) {
+      this.setSlideTexts()
       this.$refs.canvas.startAnimation(this.$refs.manager.getSlides(), startIndex)
     },
     stopAnimation () {
@@ -63,6 +69,7 @@ export default {
     },
     createGif () {
       const base64URL = 'data:image/gif;base64,'
+      this.setSlideTexts()
       this.gifURL = base64URL + this.$refs.canvas.createGif(this.$refs.manager.getSlides())
     }
   }
