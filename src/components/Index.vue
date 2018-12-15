@@ -2,6 +2,7 @@
   <div id="index">
     <Canvas :inputTexts="texts" ref="canvas"></Canvas>
     <textarea v-model="texts" placeholder="ここに入力してスライドを作成しよう"/>
+    <p class="page-num">{{ index+1 }}番目のスライドを表示中</p>
     <div class="row">
       <button class="btn six columns" type="submit" @click="prevSlide">前のスライドへ</button>
       <button class="btn six columns" type="submit" @click="nextSlide">次のスライドへ</button>
@@ -29,7 +30,6 @@ export default {
     return {
       texts: '',
       index: 0,
-      indexMax: 0,
       gifURL: ''
     }
   },
@@ -46,10 +46,10 @@ export default {
     },
     nextSlide () {
       this.setSlideTexts()
-      this.index += 1
+      if (this.texts !== '') {
+        this.index += 1
+      }
       this.texts = this.$refs.manager.getSlideTexts(this.index)
-      // 新たに追加したら、indexMaxを更新
-      this.indexMax = this.$refs.manager.getSlides().length
     },
     prevSlide () {
       this.setSlideTexts()
@@ -106,5 +106,11 @@ textarea {
 .gif-img {
   display: block;
   margin-top: 40px;
+}
+.page-num {
+  width: 200px;
+  padding: 8px;
+  color: #999;
+  border: 4px double #ccc;
 }
 </style>
