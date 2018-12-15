@@ -10,7 +10,7 @@ export default {
   },
   data () {
     return {
-      Slides: []
+      Slides: Array(10)
     }
   },
   methods: {
@@ -19,29 +19,30 @@ export default {
     },
     // getter
     getSlideTexts (slideIndex) {
-      if (slideIndex > this.Slides.length - 1) {
-        return ''
-      } else {
-        return this.Slides[slideIndex]
-      }
+      return this.Slides[slideIndex]
     },
     // setter
     setSlideTexts (slideIndex) {
+      /*
       if (slideIndex > this.Slides.length - 1) {
         this.addNewSlide()
       } else if (slideIndex < this.Slides.length) {
         this.changeSlideTexts(slideIndex)
       }
       console.log(this.Slides)
+      */
+      this.changeSlideTexts(slideIndex)
     },
     // 変更
     changeSlideTexts (slideIndex) {
       this.Slides[slideIndex] = this.inputTexts
-    },
+    }
     // 追加
+    /*
     addNewSlide () {
       this.Slides.push(this.inputTexts)
     }
+    */
   }
 }
 </script>
