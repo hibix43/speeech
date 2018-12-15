@@ -40,13 +40,13 @@ export default {
   },
   methods: {
     setSlideTexts () {
-      if (this.texts !== '') {
+      if (this.texts !== '' && this.texts !== undefined) {
         this.$refs.manager.setSlideTexts(this.index)
       }
     },
     nextSlide () {
-      this.setSlideTexts()
-      if (this.texts !== '') {
+      if (this.texts !== '' && this.texts !== undefined && this.index < this.$refs.manager.getSlides().length) {
+        this.setSlideTexts()
         this.index += 1
       }
       this.texts = this.$refs.manager.getSlideTexts(this.index)

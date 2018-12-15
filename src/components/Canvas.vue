@@ -21,11 +21,12 @@ export default {
       this.draw(this.inputTexts)
     },
     index () {
-      // 描画中のindexを親にも反映
-      this.$parent.index = this.index
       // スライドを描画しきったら、アニメを止める
-      if (this.index > this.slides.length - 1) {
+      if (this.slides[this.index] === '' || this.slides[this.index] === undefined) {
         this.animationFlag = false
+      } else {
+        // 描画中のindexを親にも反映
+        this.$parent.index = this.index
       }
     },
     animationFlag () {
@@ -55,9 +56,18 @@ export default {
       const canvasHeight = 300
       const fontSize = 36
       const lineHeight = 1.2
+      let lines = ''
+
+      // 空の場合は表示せず、アニメを止める
+      if (texts === '' || texts === undefined) {
+        this.animationFlag = false
+        return
+      }
 
       // テキストを改行で分割
-      let lines = texts.split('\n')
+      if (texts !== undefined) {
+        lines = texts.split('\n')
+      }
 
       // 初期化
       context.width = canvasWidth
