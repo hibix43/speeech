@@ -59,7 +59,7 @@ export default {
       let lines = ''
 
       // 空の場合は表示せず、アニメを止める
-      if (texts === '' || texts === undefined) {
+      if (this.animationFlag && texts === '' || texts === undefined) {
         this.animationFlag = false
         return
       }
@@ -129,8 +129,10 @@ export default {
       gifAnimation.start()
       // 1コマずつ追加
       for (let slide of slides) {
-        this.draw(slide)
-        gifAnimation.addFrame(this.ctx)
+        if (slide !== '' && slide !== undefined) {
+          this.draw(slide)
+          gifAnimation.addFrame(this.ctx)
+        }
       }
       gifAnimation.finish()
       // base64に変換

@@ -10,7 +10,7 @@ export default {
   },
   data () {
     return {
-      Slides: Array(10)
+      Slides: Array(10).fill('')
     }
   },
   methods: {
