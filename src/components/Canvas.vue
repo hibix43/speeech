@@ -59,7 +59,7 @@ export default {
       let lines = ''
 
       // 空の場合は表示せず、アニメを止める
-      if (this.animationFlag && texts === '' || texts === undefined) {
+      if (this.animationFlag && (texts === '' || texts === undefined)) {
         this.animationFlag = false
         return
       }
@@ -141,7 +141,7 @@ export default {
     convertBase64 (gifAnimation) {
       const binaryGif = gifAnimation.out.getData()
       const base64 = btoa(String.fromCharCode.apply(null, binaryGif))
-      console.log(base64)
+      // console.log(base64)
       return base64
     }
   },
