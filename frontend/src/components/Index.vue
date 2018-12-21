@@ -93,6 +93,12 @@ export default {
 </script>
 
 <style scoped>
+#index {
+  position: relative;
+  height: auto;
+  min-height: 100%;
+  background-color: #fff;
+}
 textarea {
   min-width: 320px;
   width: 90%;
@@ -124,6 +130,7 @@ textarea {
 .gif-img {
   display: block;
   margin-top: 40px;
+  padding-bottom: 100px;
 }
 .page-num {
   width: 200px;
