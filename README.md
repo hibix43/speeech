@@ -1,21 +1,28 @@
-# speeech
+# Speeech
 
-> 簡単にWe上でインパクトあるプレゼンテーションが作れるサービス
+## What
 
-## Build Setup
+簡単にWe上でインパクトあるプレゼンテーションが作れるサービス
 
-``` bash
-# install dependencies
-npm install
+## How
 
-# serve with hot reload at localhost:8080
-npm run dev
+1. 各スライドを作成してもらう
+2. アニメーションの確認
+3. Gifに変換
+4. Twitterへシェア
 
-# build for production with minification
-npm run build
+スライドはリアクティブ対応。入力がすぐさまCnavasに反映。
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+Canvas上でテキスト変えてアニメーション化。Gif変換。
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Technology
+
+- HTML/CSS
+- Javascript
+- Python
+- Flask
+- Vue.js
+- Babel
+- Skelton css framework
+- Git/GitHub
+- Netlify

@@ -13,12 +13,16 @@
       <button class="btn four columns" type="submit" @click="stopAnimation">停止</button>
     </div>
     <button class="btn complete-btn" type="submit" @click="createGif">完成させてツイートする</button>
+    <input type="text" size="100" v-model="inputTweet" placeholder="ツイート内容を入力"/>
+    <button class="btn complete-btn" type="submit" @click="createGif">完成させてツイートする</button>
+    <div>{{ backendMsg }}</div>
     <img class="gif-img" v-bind:src="gifURL" width="400"/>
     <DataManager :inputTexts="texts" ref="manager"></DataManager>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import DataManager from './DataManager.vue'
 import Canvas from './Canvas.vue'
 export default {
@@ -28,9 +32,11 @@ export default {
   },
   data () {
     return {
-      texts: '',
       index: 0,
-      gifURL: ''
+      texts: '',
+      gifURL: '',
+      inputTweet: '',
+      backendMsg: ''
     }
   },
   watch: {
@@ -69,6 +75,19 @@ export default {
       const base64URL = 'data:image/gif;base64,'
       this.setSlideTexts()
       this.gifURL = base64URL + this.$refs.canvas.createGif(this.$refs.manager.getSlides())
+      this.postTweet()
+    },
+    postTweet () {
+      const that = this
+      axios.post('/tweet', {
+        'img': this.gifURL,
+        'msg': this.tweet
+      })
+      .then(
+        function (response) {
+          that.backendMsg = response.data.message
+        }
+      )
     }
   }
 }
