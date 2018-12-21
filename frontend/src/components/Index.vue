@@ -80,7 +80,7 @@ export default {
       const that = this
       axios.post('/tweet', {
         'img': this.gifURL,
-        'msg': this.tweet
+        'msg': this.inputTweet
       })
         .then(
           function (response) {
