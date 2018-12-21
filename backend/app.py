@@ -10,3 +10,20 @@ app = Flask(__name__,
 @app.route('/')
 def index():
     return render_template("index.html")
+
+
+@app.route('/tweet', methods=['GET', 'POST'])
+def tweet_with_img():
+    if request.method == 'POST':
+        json = request.get_json()
+        img_url = json['img']
+        message = json['msg']
+        response = twitter.upload(img_url)
+        if 'media_ids' in response.keys():
+            response['status'] = message + ' #speeech'
+            response = twitter.post(response)
+            return jsonify(response)
+        else:
+            return jsonify(response)
+    else:
+        return jsonify(response)
