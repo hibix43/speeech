@@ -12,7 +12,6 @@
       <button class="btn four columns" type="submit" @click="startAnimation(index)">現在のスライドから再生</button>
       <button class="btn four columns" type="submit" @click="stopAnimation">停止</button>
     </div>
-    <button class="btn complete-btn" type="submit" @click="createGif">完成させてツイートする</button>
     <input type="text" size="100" v-model="inputTweet" placeholder="ツイート内容を入力"/>
     <button class="btn complete-btn" type="submit" @click="createGif">完成させてツイートする</button>
     <div>{{ backendMsg }}</div>
@@ -83,17 +82,23 @@ export default {
         'img': this.gifURL,
         'msg': this.tweet
       })
-      .then(
-        function (response) {
-          that.backendMsg = response.data.message
-        }
-      )
+        .then(
+          function (response) {
+            that.backendMsg = response.data.message
+          }
+        )
     }
   }
 }
 </script>
 
 <style scoped>
+#index {
+  position: relative;
+  height: auto;
+  min-height: 100%;
+  background-color: #fff;
+}
 textarea {
   min-width: 320px;
   width: 90%;
@@ -125,6 +130,7 @@ textarea {
 .gif-img {
   display: block;
   margin-top: 40px;
+  padding-bottom: 100px;
 }
 .page-num {
   width: 200px;

@@ -74,13 +74,13 @@ export default {
       context.height = canvasHeight
       context.clearRect(0, 0, canvasWidth, canvasHeight)
       // 背景色を黒にして塗りつぶす
-      context.fillStyle = '#fff'
+      context.fillStyle = '#333'
       context.fillRect(0, 0, canvasWidth, canvasHeight)
 
       // フォント設定
       context.textAlign = 'center'
       context.font = 'bold ' + fontSize + 'px Arial, meiryo, sans-serif'
-      context.fillStyle = '#666'
+      context.fillStyle = '#fff'
 
       // 書きだす
       context.beginPath()
@@ -120,7 +120,6 @@ export default {
       this.animationFlag = false
     },
     createGif (slides) {
-      console.log('Gif!!')
       // 初期化
       const GIFEncoder = require('gifencoder')
       let gifAnimation = new GIFEncoder(400, 300)
@@ -157,6 +156,5 @@ export default {
   width: 90%;
   max-width: 400px;
   margin-top: 24px;
-  border: 4px solid #777;
 }
 </style>
