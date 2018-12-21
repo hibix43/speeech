@@ -6,10 +6,10 @@ import urllib
 from requests_oauthlib import OAuth1Session
 
 twitter = OAuth1Session(
-    config.consumer_key,
-    config.consumer_secret,
-    config.access_token,
-    config.access_secret)
+    config.CK,
+    config.CS,
+    config.AT,
+    config.AS)
 
 
 def upload(img_url):
