@@ -1,7 +1,7 @@
 {
   "name": "speeech",
   "version": "1.0.0",
-  "description": "簡単にWe上でインパクトあるプレゼンテーションが作れるサービス",
+  "description": "簡単にTwitter上でプレゼンできるサービス",
   "author": "res0nanz",
   "private": true,
   "scripts": {

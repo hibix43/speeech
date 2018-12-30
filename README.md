@@ -2,7 +2,7 @@
 
 ## What
 
-簡単にWe上でインパクトあるプレゼンテーションが作れるサービス
+簡単にTwitter上でプレゼンできるサービス
 
 ## How
 
@@ -22,7 +22,9 @@ Canvas上でテキスト変えてアニメーション化。Gif変換。
 - Python
 - Flask
 - Vue.js
-- Babel
+- Canvas
+- axios
 - Skelton css framework
 - Git/GitHub
-- Netlify
+- Twitter API
+- Heroku
