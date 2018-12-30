@@ -26,4 +26,4 @@ def tweet_with_img():
         else:
             return jsonify(response)
     else:
-        return jsonify(response)
+        return jsonify({'message': '不正なアクセスです'})

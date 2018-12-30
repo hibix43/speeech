@@ -23,6 +23,7 @@ Canvas上でテキスト変えてアニメーション化。Gif変換。
 - Flask
 - Vue.js
 - Canvas
+- GIFEncoder
 - axios
 - Skelton css framework
 - Git/GitHub
